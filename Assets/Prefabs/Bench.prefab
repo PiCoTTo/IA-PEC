@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6082084377198012346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8890222717707313028}
+  m_Layer: 0
+  m_Name: RestLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8890222717707313028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6082084377198012346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.54, y: 0.12, z: -1.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3069596036845200512}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3069596036845396662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9,7 +40,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 106578, guid: ccf13c7381ca25349b107bbb9423e1bd, type: 3}
       propertyPath: m_Name
-      value: Bench Variant (1)
+      value: Bench
+      objectReference: {fileID: 0}
+    - target: {fileID: 106578, guid: ccf13c7381ca25349b107bbb9423e1bd, type: 3}
+      propertyPath: m_TagString
+      value: Interactive
       objectReference: {fileID: 0}
     - target: {fileID: 106578, guid: ccf13c7381ca25349b107bbb9423e1bd, type: 3}
       propertyPath: m_NavMeshLayer
@@ -69,6 +104,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccf13c7381ca25349b107bbb9423e1bd, type: 3}
+--- !u!4 &3069596036845200512 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 460342, guid: ccf13c7381ca25349b107bbb9423e1bd, type: 3}
+  m_PrefabInstance: {fileID: 3069596036845396662}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3069596036845290212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 106578, guid: ccf13c7381ca25349b107bbb9423e1bd, type: 3}
@@ -90,3 +130,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &7746722023977965756
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3069596036845290212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 9.82
+  m_Center: {x: 0.24364066, y: 0.010486839, z: -0.19875844}

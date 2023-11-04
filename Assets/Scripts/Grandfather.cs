@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Runner : MonoBehaviour
+public class Grandfather : MonoBehaviour
 {
-    List<Transform> waypoints        = new List<Transform>();
-    List<Transform> currentWaypoints = new List<Transform>();
+    [HideInInspector] public List<Transform> Waypoints        = new List<Transform>();
+    [HideInInspector] public List<Transform> currentWaypoints = new List<Transform>();
     List<Vector2>   newPoints        = new List<Vector2>();
 
     public float amountOfPoints = 3.0f;
 
     public float alpha = 0.5f;
 
+    // Seconds
+    public float RestTime = 3;
+
     int waypointCount    = 0;
-    int firstWaypointIdx = 0;
-    int nextWaypoint     = 0;
+    [HideInInspector] public int nextWaypoint     = 0;
     int currentNewPoint  = 0;
 
     [HideInInspector] public NavMeshAgent NavMeshAgent;
+
+    [HideInInspector] public StateWander StateWander;
+    [HideInInspector] public StateIdle StateIdle;
+    [HideInInspector] public StateAproachingToRest StateAproachingToRest;
+    [HideInInspector] public IState CurrentState;
+
+    [HideInInspector] public Transform RestPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -28,29 +37,39 @@ public class Runner : MonoBehaviour
         // Gather all secuential waypoints within Runner object
         var gatheredWaypoints = transform.parent.Find("Waypoints");
         foreach (Transform waypoint in gatheredWaypoints)
-            waypoints.Add(waypoint);
+            Waypoints.Add(waypoint);
 
-        // Parameters currently not adjusted for fluent circulation with runners circulating with opposite directions
+        // Random direction of the path
         if (Random.Range(0.0f, 1.0f) > 0.5f)
-            waypoints.Reverse();
+            Waypoints.Reverse();
 
-        waypointCount = waypoints.Count;
-        firstWaypointIdx = Random.Range(0, waypointCount);
-        NavMeshAgent.speed = Random.Range(3.5f, 6.0f);
+        StateWander = new StateWander(this);
+        StateIdle = new StateIdle(this);
+        StateAproachingToRest = new StateAproachingToRest(this);
 
-        // Go through circular buffer of waypoints
-        nextWaypoint = (firstWaypointIdx + 1) % waypoints.Count;
-
-        // Register current position
-        currentWaypoints.Add(transform);
-        currentWaypoints.Add(waypoints[firstWaypointIdx].transform);
-
-        NavMeshAgent.destination = new Vector3(waypoints[nextWaypoint].transform.position.x, waypoints[nextWaypoint].transform.position.y, transform.position.z);
-        currentNewPoint = (int)amountOfPoints;
+        ChangeToState(StateWander);
     }
 
     // Update is called once per frame
     void Update()
+    {
+        CurrentState.UpdateState();
+    }
+
+    public void ChangeToState(IState state)
+    {
+        CurrentState = state;
+        CurrentState.EnterState();
+    }
+
+    public void ResetMove()
+    {
+        waypointCount = Waypoints.Count;
+        currentNewPoint = (int)amountOfPoints;
+        newPoints.Clear();
+    }
+
+    public void Move()
     {
         if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance && waypointCount > 3)
         {
@@ -63,23 +82,23 @@ public class Runner : MonoBehaviour
                 if (currentWaypoints.Count < 4)
                 {
                     wp = (nextWaypoint + 1) % waypointCount;
-                    currentWaypoints.Add(waypoints[wp].transform);
+                    currentWaypoints.Add(Waypoints[wp].transform);
                     wp = (nextWaypoint + 2) % waypointCount;
-                    currentWaypoints.Add(waypoints[wp].transform);
+                    currentWaypoints.Add(Waypoints[wp].transform);
                 }
                 else
                 {
                     currentWaypoints.Clear();
                     // Go through circular buffer of waypoints
-                    nextWaypoint = (nextWaypoint + 1) % waypoints.Count;
+                    nextWaypoint = (nextWaypoint + 1) % Waypoints.Count;
                     wp = nextWaypoint == 0 ? waypointCount - 1 : nextWaypoint % waypointCount - 1;
-                    currentWaypoints.Add(waypoints[wp]);
+                    currentWaypoints.Add(Waypoints[wp]);
                     wp = nextWaypoint % waypointCount;
-                    currentWaypoints.Add(waypoints[wp]);
+                    currentWaypoints.Add(Waypoints[wp]);
                     wp = (nextWaypoint + 1) % waypointCount;
-                    currentWaypoints.Add(waypoints[wp]);
+                    currentWaypoints.Add(Waypoints[wp]);
                     wp = (nextWaypoint + 2) % waypointCount;
-                    currentWaypoints.Add(waypoints[wp]);
+                    currentWaypoints.Add(Waypoints[wp]);
                 }
 
                 Vector2 p0 = new Vector2(currentWaypoints[0].transform.position.x, currentWaypoints[0].transform.position.z);
@@ -144,5 +163,10 @@ public class Runner : MonoBehaviour
                 Gizmos.DrawSphere(pos, 0.3f);
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        CurrentState.OnTriggerEnter(other);
     }
 }
