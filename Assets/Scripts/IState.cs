@@ -8,11 +8,5 @@ public interface IState
 
     void UpdateState();
 
-    void Impact();
-
     void OnTriggerEnter(Collider col);
-
-    void OnTriggerStay(Collider col);
-
-    void OnTriggerExit(Collider col);
 }

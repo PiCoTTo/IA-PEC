@@ -6,23 +6,17 @@ public class StateWander : IState
 {
     Grandfather selfGrandfather;
         
-    public float amountOfPoints = 3.0f;
-
-    public float alpha = 0.5f;
-
     List<Transform> currentWaypoints = new List<Transform>();
 
-    int waypointCount = 0;
-    int firstWaypointIdx = 0;
-    int nextWaypoint = 0;
-    bool firstMovement = true;
-
+    int     waypointCount       = 0;
+    int     firstWaypointIdx    = 0;
+    int     nextWaypoint        = 0;
+    bool    firstMovement       = true;
     
     public StateWander(Grandfather grandfather)
     {
         selfGrandfather = grandfather;
     }
-
 
     public void EnterState()
     {
@@ -34,23 +28,20 @@ public class StateWander : IState
 
             // Go through circular buffer of waypoints
             nextWaypoint = (firstWaypointIdx + 1) % selfGrandfather.Waypoints.Count;
-            selfGrandfather.nextWaypoint = nextWaypoint;
+            selfGrandfather.NextWaypoint = nextWaypoint;
             firstMovement = false;
         }
         else
         {
             firstWaypointIdx = (nextWaypoint + 1) % selfGrandfather.Waypoints.Count;
-            //firstWaypointIdx = nextWaypoint;
-            nextWaypoint = (firstWaypointIdx + 1) % selfGrandfather.Waypoints.Count;
-            selfGrandfather.nextWaypoint = firstWaypointIdx;
+            //nextWaypoint = (firstWaypointIdx + 1) % selfGrandfather.Waypoints.Count;
+            selfGrandfather.NextWaypoint = firstWaypointIdx;
         }
 
         // Register current position
         selfGrandfather.currentWaypoints.Clear();
         selfGrandfather.currentWaypoints.Add(selfGrandfather.transform);
         selfGrandfather.currentWaypoints.Add(selfGrandfather.Waypoints[firstWaypointIdx].transform);
-
-        //selfGrandfather.NavMeshAgent.destination = new Vector3(selfGrandfather.Waypoints[nextWaypoint].transform.position.x, selfGrandfather.Waypoints[nextWaypoint].transform.position.y, selfGrandfather.transform.position.z);
 
         selfGrandfather.ResetMove();
     }
@@ -61,28 +52,14 @@ public class StateWander : IState
         selfGrandfather.Move();
     }
 
-    public void Impact()
-    {
-    }
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Interactive")
-        {
             selfGrandfather.RestPosition = other.transform.GetChild(0);
-        }
 
         // Change state
-        nextWaypoint = selfGrandfather.nextWaypoint;
+        nextWaypoint = selfGrandfather.NextWaypoint;
         selfGrandfather.NavMeshAgent.stoppingDistance = 0.0f;
         selfGrandfather.ChangeToState(selfGrandfather.StateAproachingToRest);
-    }
-
-    public void OnTriggerStay(Collider col)
-    {
-    }
-
-    public void OnTriggerExit(Collider col)
-    { 
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class StateIdle : IState
 {
     Grandfather selfGrandfather;
-    float remainingRestTime;
+    float       remainingRestTime;
 
     public StateIdle(Grandfather grandfather)
     {
@@ -28,19 +28,7 @@ public class StateIdle : IState
         }
     }
 
-    public void Impact()
-    {
-    }
-
     public void OnTriggerEnter(Collider col)
-    {
-    }
-
-    public void OnTriggerStay(Collider col)
-    {
-    }
-
-    public void OnTriggerExit(Collider col)
     {
     }
 }

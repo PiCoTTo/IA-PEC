@@ -5,27 +5,27 @@ using UnityEngine.AI;
 
 public class Grandfather : MonoBehaviour
 {
-    [HideInInspector] public List<Transform> Waypoints        = new List<Transform>();
-    [HideInInspector] public List<Transform> currentWaypoints = new List<Transform>();
-    List<Vector2>   newPoints        = new List<Vector2>();
+    [HideInInspector] public List<Transform>    Waypoints        = new List<Transform>();
+    [HideInInspector] public List<Transform>    currentWaypoints = new List<Transform>();
+    List<Vector2>                               newPoints        = new List<Vector2>();
 
-    public float amountOfPoints = 3.0f;
-
-    public float alpha = 0.5f;
+    public float AmountOfPoints = 3.0f;
+    public float Alpha          = 0.5f;
 
     // Seconds
     public float RestTime = 3;
 
-    int waypointCount    = 0;
-    [HideInInspector] public int nextWaypoint     = 0;
-    int currentNewPoint  = 0;
+    int waypointCount   = 0;
+    int currentNewPoint = 0;
 
-    [HideInInspector] public NavMeshAgent NavMeshAgent;
+    [HideInInspector] public int                    NextWaypoint = 0;
 
-    [HideInInspector] public StateWander StateWander;
-    [HideInInspector] public StateIdle StateIdle;
-    [HideInInspector] public StateAproachingToRest StateAproachingToRest;
-    [HideInInspector] public IState CurrentState;
+    [HideInInspector] public NavMeshAgent           NavMeshAgent;
+
+    [HideInInspector] public StateWander            StateWander;
+    [HideInInspector] public StateIdle              StateIdle;
+    [HideInInspector] public StateAproachingToRest  StateAproachingToRest;
+    [HideInInspector] public IState                 CurrentState;
 
     [HideInInspector] public Transform RestPosition;
 
@@ -43,9 +43,9 @@ public class Grandfather : MonoBehaviour
         if (Random.Range(0.0f, 1.0f) > 0.5f)
             Waypoints.Reverse();
 
-        StateWander = new StateWander(this);
-        StateIdle = new StateIdle(this);
-        StateAproachingToRest = new StateAproachingToRest(this);
+        StateWander             = new StateWander(this);
+        StateIdle               = new StateIdle(this);
+        StateAproachingToRest   = new StateAproachingToRest(this);
 
         ChangeToState(StateWander);
     }
@@ -64,8 +64,8 @@ public class Grandfather : MonoBehaviour
 
     public void ResetMove()
     {
-        waypointCount = Waypoints.Count;
-        currentNewPoint = (int)amountOfPoints;
+        waypointCount   = Waypoints.Count;
+        currentNewPoint = (int)AmountOfPoints;
         newPoints.Clear();
     }
 
@@ -73,7 +73,7 @@ public class Grandfather : MonoBehaviour
     {
         if (NavMeshAgent.remainingDistance <= NavMeshAgent.stoppingDistance && waypointCount > 3)
         {
-            if (currentNewPoint == (int)amountOfPoints)
+            if (currentNewPoint == (int)AmountOfPoints)
             {
                 newPoints.Clear();
 
@@ -81,23 +81,23 @@ public class Grandfather : MonoBehaviour
                 // If the first waypoint has just been reached
                 if (currentWaypoints.Count < 4)
                 {
-                    wp = (nextWaypoint + 1) % waypointCount;
+                    wp = (NextWaypoint + 1) % waypointCount;
                     currentWaypoints.Add(Waypoints[wp].transform);
-                    wp = (nextWaypoint + 2) % waypointCount;
+                    wp = (NextWaypoint + 2) % waypointCount;
                     currentWaypoints.Add(Waypoints[wp].transform);
                 }
                 else
                 {
                     currentWaypoints.Clear();
                     // Go through circular buffer of waypoints
-                    nextWaypoint = (nextWaypoint + 1) % Waypoints.Count;
-                    wp = nextWaypoint == 0 ? waypointCount - 1 : nextWaypoint % waypointCount - 1;
+                    NextWaypoint = (NextWaypoint + 1) % Waypoints.Count;
+                    wp = NextWaypoint == 0 ? waypointCount - 1 : NextWaypoint % waypointCount - 1;
                     currentWaypoints.Add(Waypoints[wp]);
-                    wp = nextWaypoint % waypointCount;
+                    wp = NextWaypoint % waypointCount;
                     currentWaypoints.Add(Waypoints[wp]);
-                    wp = (nextWaypoint + 1) % waypointCount;
+                    wp = (NextWaypoint + 1) % waypointCount;
                     currentWaypoints.Add(Waypoints[wp]);
-                    wp = (nextWaypoint + 2) % waypointCount;
+                    wp = (NextWaypoint + 2) % waypointCount;
                     currentWaypoints.Add(Waypoints[wp]);
                 }
 
@@ -110,7 +110,7 @@ public class Grandfather : MonoBehaviour
                 float t2 = GetT(t1, p1, p2);
 
                 float t3 = GetT(t2, p2, p3);
-                for (float t = t1; t < t2; t += ((t2 - t1) / amountOfPoints))
+                for (float t = t1; t < t2; t += ((t2 - t1) / AmountOfPoints))
                 {
                     Vector2 A1 = (t1 - t) / (t1 - t0) * p0 + (t - t0) / (t1 - t0) * p1;
                     Vector2 A2 = (t2 - t) / (t2 - t1) * p1 + (t - t1) / (t2 - t1) * p2;
@@ -140,7 +140,7 @@ public class Grandfather : MonoBehaviour
     {
         float a = Mathf.Pow((p1.x - p0.x), 2.0f) + Mathf.Pow((p1.y - p0.y), 2.0f);
         float b = Mathf.Pow(a, 0.5f);
-        float c = Mathf.Pow(b, alpha);
+        float c = Mathf.Pow(b, Alpha);
         return (c + t);
     }
 

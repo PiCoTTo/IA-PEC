@@ -15,13 +15,11 @@ public class StateAproachingToRest : IState
 
     public void EnterState()
     {
-        // Gather the 4 positions necessary to calculate the smoothinig curve
+        // Gather the 4 positions necessary to calculate the smoothing curve
 
         // If grandfather has not yet reached the first destination
         if (selfGrandfather.currentWaypoints.Count == 2)
         {
-            //currentWaypoints.Add(selfGrandfather.currentWaypoints[0]);
-            //currentWaypoints.Add(selfGrandfather.currentWaypoints[0]);
             currentWaypoints.Add(selfGrandfather.transform);
             currentWaypoints.Add(selfGrandfather.transform);
         }
@@ -46,26 +44,12 @@ public class StateAproachingToRest : IState
     {
         // When rest point reached
         if (Vector3.Distance(selfGrandfather.transform.position, selfGrandfather.RestPosition.transform.position) < 1)
-        {
             selfGrandfather.ChangeToState(selfGrandfather.StateIdle);
-        }
         else
             selfGrandfather.Move();
     }
 
-    public void Impact()
-    {
-    }
-
     public void OnTriggerEnter(Collider col)
-    {
-    }
-
-    public void OnTriggerStay(Collider col)
-    {
-    }
-
-    public void OnTriggerExit(Collider col)
     {
     }
 }
