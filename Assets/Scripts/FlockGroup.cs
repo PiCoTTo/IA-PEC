@@ -15,6 +15,8 @@ public class FlockGroup : MonoBehaviour
     public float MinSpeed;
     [Range(0, 10)]
     public float MaxSpeed;
+    [Range(0.1f, 10)]
+    public float NotConsiderDistance = 0.2f;
     [Range(0.5f, 10)]
     public float NearbyFlockDistance;
     [Range(0.5f, 10)]

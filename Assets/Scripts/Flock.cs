@@ -17,20 +17,22 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Make flocks move to the center of the group if they move too far away
         Bounds bounds = new Bounds(FlockGroup.Instance.transform.position, FlockGroup.Instance.VolumeBoundaries * 2);
-
         turning = !bounds.Contains(transform.position) ? true : false;
 
         if (turning)
         {
+            // Bees to the center of the group
             Vector3 dir = FlockGroup.Instance.transform.position - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), FlockGroup.Instance.RotationSpeed * Time.deltaTime);
-
         }
         else
         {
+            // Update rules of flocks motion
 
-            if (Random.Range(0, 100) < 10)
+            // Change speed not too often
+            if (Random.Range(0, 100) < 1)
             {
                 speed = Random.Range(FlockGroup.Instance.MinSpeed, FlockGroup.Instance.MaxSpeed);
             }
@@ -51,7 +53,7 @@ public class Flock : MonoBehaviour
                         averageCentre += flockObj.transform.position;
                         groupSize++;
 
-                        if (nfDistance < 1.0f)
+                        if (nfDistance < FlockGroup.Instance.NotConsiderDistance)
                         {
                             notConsider = notConsider + (transform.position - flockObj.transform.position);
                         }
@@ -76,7 +78,8 @@ public class Flock : MonoBehaviour
                         FlockGroup.Instance.RotationSpeed * Time.deltaTime);
             }
 
-            if (Random.Range(0, 100) < 10)
+            // Change direction of movement on Y axis not too often
+            if (Random.Range(0, 100) < 1)
             {
                 if (Random.Range(0, 100) < 50)
                     yAxisSign = -1;
