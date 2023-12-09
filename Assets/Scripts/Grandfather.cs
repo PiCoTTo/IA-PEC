@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Grandfather : MonoBehaviour
+public class Grandfather : MonoBehaviour, IStoppableAgent
 {
     [HideInInspector] public List<Transform>    Waypoints        = new List<Transform>();
     [HideInInspector] public List<Transform>    currentWaypoints = new List<Transform>();
@@ -168,5 +168,17 @@ public class Grandfather : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         CurrentState.OnTriggerEnter(other);
+    }
+
+
+    public void Stop()
+    {
+        NavMeshAgent.isStopped = true;
+    }
+
+
+    public void Continue()
+    {
+        NavMeshAgent.isStopped = false;
     }
 }

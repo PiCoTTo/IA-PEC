@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 877141417966105457}
   m_Layer: 0
   m_Name: Runner
-  m_TagString: Untagged
+  m_TagString: GoodCitizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109b4a046abfa6b4c8ba314107c592b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfPoints: 3
-  alpha: 0.5
+  AmountOfPoints: 3
+  Alpha: 0.5
   NavMeshAgent: {fileID: 0}
 --- !u!195 &877141417966105457
 NavMeshAgent:

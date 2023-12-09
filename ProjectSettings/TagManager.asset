@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Waypoint
   - Interactive
+  - GoodCitizen
+  - Thief
+  - Cop
   layers:
   - Default
   - TransparentFX

@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 849105706383214911}
   - component: {fileID: 849105706383214910}
   - component: {fileID: 8303729323010410158}
-  - component: {fileID: 3647028170687561783}
+  - component: {fileID: -3989623645606505268}
+  - component: {fileID: 223414306647173410}
   m_Layer: 0
-  m_Name: Grandfather
-  m_TagString: GoodCitizen
+  m_Name: Thief
+  m_TagString: Thief
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ed98dd9f9004fc6499e4e866e073d032, type: 2}
+  - {fileID: 2100000, guid: 95deac2786c3d4f4db9767d916cab5e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +111,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -122,7 +123,7 @@ NavMeshAgent:
   m_BaseOffset: 0.96
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3647028170687561783
+--- !u!114 &-3989623645606505268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,14 +132,77 @@ MonoBehaviour:
   m_GameObject: {fileID: 849105706383214909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17bce5e8cd2201848bbae265818df343, type: 3}
+  m_Script: {fileID: 11500000, guid: 422fb6956201c7944ae2113a1a53b0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waypoints: []
-  currentWaypoints: []
-  AmountOfPoints: 3
-  Alpha: 0.5
-  RestTime: 3
-  NextWaypoint: 0
-  NavMeshAgent: {fileID: 0}
-  RestPosition: {fileID: 0}
+  maxTasksPerTick: 500
+  behavior: {fileID: 11400000, guid: 72de060621123904cb06370ff8afbded, type: 2}
+  paused: 0
+  restartWhenFinished: 0
+  blackboard:
+    intParams: 
+    intParamsNames: []
+    intParamsLostDefaultValue: 
+    boolParams: 00000000
+    boolParamsNames:
+    - isTargetRobbed
+    - IsTargetSelected
+    - IsTargetReleased
+    - ResetTimer
+    boolParamsLostDefaultValue: 
+    floatParams: []
+    floatParamsNames: []
+    floatParamsLostDefaultValue: 
+    stringParams: []
+    stringParamsNames: []
+    stringParamsLostDefaultValue: 
+    colorParams: []
+    colorParamsNames: []
+    colorParamsLostDefaultValue: 
+    objectParams: []
+    objectParamsNames: []
+    objectParamsLostDefaultValue: 
+    layerMaskParams: []
+    layerMaskParamsNames: []
+    layerMaskParamsLostDefaultValue: 
+    enumParamsNames: []
+    enumParamsLostDefaultValue: 
+    vector2Params: []
+    vector2ParamsNames: []
+    vector2ParamsLostDefaultValue: 
+    vector3Params: []
+    vector3ParamsNames: []
+    vector3ParamsLostDefaultValue: 
+    vector4Params: []
+    vector4ParamsNames: []
+    vector4ParamsLostDefaultValue: 
+    rectParams: []
+    rectParamsNames: []
+    rectParamsLostDefaultValue: 
+    animationCurveParams: []
+    animationCurveParamsNames: []
+    animationCurveParamsLostDefaultValue: 
+    boundsParams: []
+    boundsParamsNames: []
+    boundsParamsLostDefaultValue: 
+    gradientParams: []
+    gradientParamsNames: []
+    gradientParamsLostDefaultValue: 
+    quaternionParams: []
+    quaternionParamsNames: []
+    quaternionParamsLostDefaultValue: 
+--- !u!114 &223414306647173410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849105706383214909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5b0c19eb964e64e9b350f7940bdbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsRobbing: 0
+  IsfleeingFromCop: 0
+  ChasingCop: {fileID: 0}
