@@ -34,8 +34,12 @@ public class ActionSelectTargetToChase : BBUnity.Actions.GOAction
 
                     bool TargetSelected = false;
                     if (thiefParams.IsRobbing)
+                    {
+                        Random.InitState(System.DateTime.Now.Millisecond);
+
                         // Probability to catch the thief robbing
-                        TargetSelected = Random.Range(0, 100) < 50;
+                        TargetSelected = Random.Range(0, 100) < 1;
+                    }
 
                     if (TargetSelected)
                     {
