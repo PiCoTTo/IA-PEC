@@ -9,12 +9,10 @@ using Pada1.BBCore.Tasks;
 [Action("Get Terrain Random Point")]
 public class ActionGetTerrainRandomPoint : BasePrimitiveAction
 {
-    //[InParam("terrain")]
-    Terrain terrain;
-
     [OutParam("point")]
     Vector3 point;
 
+    Terrain terrain;
     Vector3 size;
     Vector3 pos;
 
@@ -40,7 +38,5 @@ public class ActionGetTerrainRandomPoint : BasePrimitiveAction
         Debug.Log("Get Terrain Random OnUpdate(): pos = " + pos);
 
         return TaskStatus.COMPLETED;
-
-        //return base.OnUpdate();
     }
 }

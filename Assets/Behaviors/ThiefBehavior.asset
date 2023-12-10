@@ -47,7 +47,7 @@ MonoBehaviour:
     <SequenceNode id=\"25\" />\r\n            </child>\r\n          </GuardAndNode>\r\n       
     </elem>\r\n      </children>\r\n      <inputParams />\r\n      <outputParams
     />\r\n      <localParams />\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
-    id=\"19\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\" name=\"ConditionIsCopChasingMe\">\r\n     
+    id=\"19\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\" name=\"ConditionIsCopChasingMe\">\r\n     
     <inputParams>\r\n        <inputValues>\r\n          <entry name=\"ChasingCop\"
     type=\"UnityEngine.GameObject\" isBlackboard=\"False\" />\r\n        </inputValues>\r\n     
     </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
@@ -171,7 +171,7 @@ MonoBehaviour:
     description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ConditionEvalNode id=\"19\" />\r\n          <PrioritySelectorNode
     id=\"2\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n   
-    <ActionNode id=\"15\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    <ActionNode id=\"15\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
     position=\"125.6369 248.8123\" name=\"Run From Game Object\" description=\"\"
     cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n         
     <ActionNode id=\"15\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
@@ -196,7 +196,7 @@ MonoBehaviour:
     description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ConditionEvalNode id=\"22\" />\r\n          <PrioritySelectorNode
     id=\"2\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n   
-    <ActionNode id=\"10\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    <ActionNode id=\"10\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
     position=\"905.6432 441.8133\" name=\"Select Target to Robe\" description=\"\"
     cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"10\" />\r\n       
     </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ConditionEvalNode id=\"26\">\r\n     
@@ -230,7 +230,7 @@ MonoBehaviour:
     <nodes />\r\n      </_nodes>\r\n    </BehaviorTree>\r\n    <BehaviorTree id=\"10\"
     _removeIfClosed=\"False\">\r\n      <_rootList />\r\n      <_nodes>\r\n       
     <nodes />\r\n      </_nodes>\r\n    </BehaviorTree>\r\n  </editorInfo>\r\n</BehaviorBricks>"
-  zoom: 0.9
+  zoom: 1
   subslist:
   - {fileID: 11400000, guid: 66ba54e4b4437ae48bb5880b23f5d485, type: 2}
   _guid: 72de060621123904cb06370ff8afbded

@@ -34,14 +34,6 @@ public class ActionSelectTargetToRobe : BBUnity.Actions.GOAction
 
         TargetReleased = false;
 
-        //if (delay > 0)
-        //{
-        //    elapsed++;
-        //    elapsed %= delay;
-        //    if (elapsed != 0)
-        //        return TaskStatus.FAILED;
-        //}
-
         // Search for a potential target nearby
         GameObject[] potentialTargets = GameObject.FindGameObjectsWithTag("GoodCitizen");
 
@@ -59,8 +51,6 @@ public class ActionSelectTargetToRobe : BBUnity.Actions.GOAction
 
             return TaskStatus.COMPLETED;
         }
-
-        //elapsed = delay-1;
 
         return TaskStatus.FAILED;
     }

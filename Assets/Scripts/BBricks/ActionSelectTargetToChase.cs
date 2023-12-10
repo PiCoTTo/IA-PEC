@@ -15,9 +15,6 @@ public class ActionSelectTargetToChase : BBUnity.Actions.GOAction
     [OutParam("TargetToCatch")]
     GameObject TargetToChase;
 
-    //[OutParam("ChasingCop")]
-    //public GameObject ChasingCop;
-
     public override TaskStatus OnUpdate()
     {
         // Search for a potential target nearby

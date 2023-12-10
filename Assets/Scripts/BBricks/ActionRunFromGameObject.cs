@@ -15,14 +15,8 @@ public class ActionRunFromGameObject : BBUnity.Actions.GOAction
     [InParam("TargetToRobe")]
     GameObject targetToRobe;
 
-    [OutParam("IsTargetSelected")]
-    public bool TargetSelected;
-
     [OutParam("IsTargetReleased")]
     public bool TargetReleased;
-
-    [OutParam("IsTargetRobbed")]
-    public bool TargetRobbed;
 
     [OutParam("ReleasedGameObject")]
     public GameObject releasedGameObject;
@@ -47,7 +41,6 @@ public class ActionRunFromGameObject : BBUnity.Actions.GOAction
             thiefParams.TargetJustRobbed = targetToRobe;
 
             TargetReleased = false;
-            TargetRobbed = true;
             if (thiefParams != null)
                 thiefParams.IsRobbing = false;
         }

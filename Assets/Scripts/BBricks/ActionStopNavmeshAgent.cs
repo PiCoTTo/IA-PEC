@@ -15,9 +15,6 @@ public class ActionStopNavmeshAgent : BBUnity.Actions.GOAction
     [InParam("StopDuration", DefaultValue = 360)]
     public int StopDuration;
 
-    [OutParam("IsTargetSelected")]
-    public bool TargetSelected;
-
     [OutParam("IsTargetReleased")]
     public bool TargetReleased;
 

@@ -8,28 +8,11 @@ using Pada1.BBCore.Framework;
 [Condition("IsThereTargetToRobe")]
 public class ConditionIsTargetToRobe : BBUnity.Conditions.GOCondition
 {
-    //[InParam("Target Selected to Robe")]
-    //public GameObject target;
-
     [InParam("MaximumDistanceToSearch")]
     public float MaxDistance;
 
-    //[InParam("DelayBetweenSearches", DefaultValue = 360)]
-    //public int delay;
-
-    //[InParam("IsTargetSelected")]
-    //public bool TargetSelected;
-
-    //[InParam("IsTargetReleased")]
-    //public bool TargetReleased;
-
-    //[InParam("ResetTimer")]
-    //public bool ResetTimer;
-
     public override bool Check()
     {
-        //if (TargetSelected && !TargetReleased)
-        //    return false;
         Thief thiefParams = gameObject.GetComponent<Thief>();
 
         // Search for a potential target nearby
