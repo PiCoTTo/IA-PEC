@@ -9,6 +9,8 @@ TagManager:
   - GoodCitizen
   - Thief
   - Cop
+  - Obstacle
+  - Target
   layers:
   - Default
   - TransparentFX
